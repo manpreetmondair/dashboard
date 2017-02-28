@@ -19,18 +19,19 @@ dashboardImage.alt = "FallImage";
 
 
 // 3. Below each dashboard image, there's a season/quarter name. Below those, there are three dots. Replace those three dots with a randomly generated number formatted as currency, like $12,589.00.
-var currency = document.querySelectorAll(".text-muted");
-currency[0].innerText= '$12,589.00.';
-currency[1].innerText= '$10,400.00.';
-currency[2].innerText= '$13,600.00.';
-currency[3].innerText= '$14,700.00.';
+
+var currencies = document.querySelectorAll('.text-muted');
+currencies.forEach(function(currency) {
+    var randomCurrency = (Math.ceil(Math.random()*10000000) / 100);
+    currency.innerHTML = '$ ' + randomCurrency + '.';
+});
 
 // Another Way to do this
-// var currencies = document.querySelectorAll('.text-muted');
-// currencies.forEach(function(currency) {
-//     var randomCurrency = (Math.ceil(Math.random()*100000) / 100);
-//     currency.innerHTML = '$' + randomCurrency;
-// })
+// var currency = document.querySelectorAll(".text-muted");
+// currency[0].innerText= '$12,589.00.';
+// currency[1].innerText= '$10,400.00.';
+// currency[2].innerText= '$13,600.00.';
+// currency[3].innerText= '$14,700.00.';
 
 // 4. Change the currently selected left side menu item from Overview to Reports.
 var overview = document.querySelectorAll('li')[4];
@@ -45,10 +46,6 @@ inputValue.forEach(function(input){
     input.setAttribute("placeholder","Q4 sales");
 });
 
-
-
-
-
 // 6. Add the "table-hover" class to the table. See the Bootstrap table docs.
 var tableClass = document.querySelectorAll('table');
 tableClass.forEach(function(hover){
@@ -57,16 +54,12 @@ hover.classList.add('table-hover')
 })
 
 // 7. Add the "success" class to the 7th - 10th row of the table, like: <tr class="success">...</tr>
-
-
 var addSucess = document.querySelectorAll('tr');
 addSucess.forEach(function(success, i){
     if(i>=7 && i<=10){
          success.classList.add('success');
         }
 })
-
-
 
 // 8. Change the table header names to: ID, First Name, Last Name, Department, Client.
 var tableHeader = document.querySelectorAll('th');
@@ -84,7 +77,7 @@ var arrayObjects = document.querySelectorAll('tbody tr');
 arrayObjects.forEach(function(arrayObject) {
   // 2. declare a variable named object and set it to an object literal  
     var rowOfObject = {
-        // 3. set object.id to the row.children[0].innerText
+  // 3. set object.id to the row.children[0].innerText
         id: Number(arrayObject.children[0].innerHTML.replace(',', '')),
         firstName: arrayObject.children[1].innerHTML,
         lastName: arrayObject.children[2].innerHTML,
@@ -94,8 +87,8 @@ arrayObjects.forEach(function(arrayObject) {
     // 4. push the object variable into the data array using the push method
     rowOfObjects.push(rowOfObject);
 })
-// 5. console log your data variable
-console.log(arrayObjects)
+    // 5. console log your data variable
+  console.log(arrayObjects)
 
 // 10. Make each word in the table capitalized.
 var capitalizeFirst = document.querySelectorAll('table');
